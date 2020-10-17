@@ -8,18 +8,6 @@ dateEl.text(now.format("dddd, MMMM Do"))
 
 var timeblockEl = $("#timeblock");
 
-// <div class="row">
-//           <div class="input-group mb-3">
-//             <div class="input-group-prepend">
-//               <span class="input-group-text">5:00</span>
-//             </div>
-//             <input type="text" class="form-control">
-//             <div class="input-group-append">
-//               <button id = "9" type="button" class="btn btn-primary">Save</button>
-//             </div>
-//           </div>
-//         </div>
-
 for (var i = 9; i < 18; i++){
     var rowDiv = $("<div>");
     rowDiv.addClass("row");
@@ -41,6 +29,7 @@ for (var i = 9; i < 18; i++){
     var inputGroup = $("<input>");
     inputGroup.attr("type", "text")
     inputGroup.addClass("form-control")
+    inputGroup.attr("id", hourText)
 
     var appendDiv = $("<div>");
     appendDiv.addClass("input-group-append");
@@ -57,8 +46,21 @@ for (var i = 9; i < 18; i++){
     rowDiv.append(inputGroupDiv);
     timeblockEl.append(rowDiv)
 
+    console.log(i)
+    console.log(hour)
+
+    if (i < hour){
+        $("#" + i).addClass("past");
+    } else if (i === hour){
+        $("#" + i).addClass("present");
+    } else (i > hour);{
+        $("#" + i).addClass("future");
+    }
 }
 
 $(".btn").click(function(){
-    console.log($(this));
+    var savedText = $("#9");
+    localStorage.setItem("savedText", input.val());
 });
+
+var storedValue = localStorage.getItem("savedText")
