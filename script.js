@@ -2,9 +2,9 @@ var now = moment();
 var hour = now.hour();
 var dateEl = $("#currentDay");
 
-console.log(hour)
+console.log(hour);
 
-dateEl.text(now.format("dddd, MMMM Do"))
+dateEl.text(now.format("dddd, MMMM Do"));
 
 var timeblockEl = $("#timeblock");
 
@@ -20,34 +20,34 @@ for (var i = 9; i < 18; i++){
 
     var span = $("<span>");
     span.addClass("input-group-text");
-    var hourText = i
+    var hourText = i;
     if(hourText > 12){
-        hourText -= 12
+        hourText -= 12;
     }
-    span.text(hourText + ":00")
+    span.text(hourText + ":00");
 
     var inputGroup = $("<input>");
-    inputGroup.attr("type", "text")
-    inputGroup.addClass("form-control")
-    inputGroup.attr("id", hourText)
+    inputGroup.attr("type", "text");
+    inputGroup.addClass("form-control");
+    inputGroup.attr("id", i);
 
     var appendDiv = $("<div>");
     appendDiv.addClass("input-group-append");
 
     var button = $("<button>");
-    button.attr("type", "button")
-    button.addClass("btn btn-primary")
-    button.text("Save")
+    button.attr("type", "button");
+    button.addClass("btn btn-primary");
+    button.text("Save");
 
 
     prependDiv.append(span);
     appendDiv.append(button);
     inputGroupDiv.append(prependDiv, inputGroup, appendDiv);
     rowDiv.append(inputGroupDiv);
-    timeblockEl.append(rowDiv)
+    timeblockEl.append(rowDiv);
 
-    console.log(i)
-    console.log(hour)
+    console.log(i);
+    console.log(hour);
 
     if (i < hour){
         $("#" + i).addClass("past");
@@ -58,9 +58,24 @@ for (var i = 9; i < 18; i++){
     }
 }
 
+getText();
+
 $(".btn").click(function(){
-    var savedText = $("#9");
-    localStorage.setItem("savedText", input.val());
+    var nineText = $("#9").val();
+
+    localStorage.setItem("textbox", nineText);
+
+
+    console.log(localStorage);
+
 });
 
-var storedValue = localStorage.getItem("savedText")
+
+function getText(){
+    var textContent = localStorage.getItem("textbox")
+    $("#9").text(textContent);
+    console.log(textContent);
+    console.log($("#9"));
+}
+
+// localStorage.clear()
