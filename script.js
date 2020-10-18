@@ -1,12 +1,13 @@
 var now = moment();
 var hour = now.hour();
+var minute = now.minute();
 var dateEl = $("#currentDay");
 var hourEl = $("#currentTime")
 
+console.log(minute)
 console.log(hour);
 
 dateEl.text(now.format("dddd, MMMM Do"));
-hourEl.text(hour);
 
 var timeblockEl = $("#timeblock");
 
@@ -59,6 +60,18 @@ for (var i = 9; i < 18; i++){
         $("#" + i).addClass("future");
     }
 }
+
+currentTime()
+
+function currentTime(){
+    if(hour > 12){
+        hour -= 12;
+        hourEl.text(hour + ":" + minute + "PM") 
+    } else {
+        hourEl.text(hour + ":" + minute + "AM")
+    }
+}
+
 
 getText();
 
