@@ -1,10 +1,12 @@
 var now = moment();
 var hour = now.hour();
 var dateEl = $("#currentDay");
+var hourEl = $("#currentTime")
 
 console.log(hour);
 
 dateEl.text(now.format("dddd, MMMM Do"));
+hourEl.text(hour);
 
 var timeblockEl = $("#timeblock");
 
@@ -53,7 +55,7 @@ for (var i = 9; i < 18; i++){
         $("#" + i).addClass("past");
     } else if (i === hour){
         $("#" + i).addClass("present");
-    } else (i > hour);{
+    } else if (i > hour){
         $("#" + i).addClass("future");
     }
 }
@@ -61,9 +63,9 @@ for (var i = 9; i < 18; i++){
 getText();
 
 $(".btn").click(function(){
-    var nineText = $("#9").val();
+    var btnText = $(this).parent().siblings("input").val();
 
-    localStorage.setItem("textbox", nineText);
+    localStorage.setItem("textbox_" + $(this).parent().siblings("input").attr("id"), btnText);
 
 
     console.log(localStorage);
@@ -72,10 +74,11 @@ $(".btn").click(function(){
 
 
 function getText(){
-    var textContent = localStorage.getItem("textbox")
-    $("#9").text(textContent);
-    console.log(textContent);
-    console.log($("#9"));
-}
+    for (var i = 9; i < 18; i++){
+        var textContent = localStorage.getItem("textbox_" + i)
+        $("#" + i).val(textContent);
+        console.log(textContent);
+        console.log($("#" + i));
+}}
 
 // localStorage.clear()
