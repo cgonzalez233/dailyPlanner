@@ -61,6 +61,7 @@ for (var i = 9; i < 18; i++){
     }
 }
 
+
 currentTime()
 
 function currentTime(){
@@ -71,7 +72,6 @@ function currentTime(){
         hourEl.text(hour + ":" + minute + "AM")
     }
 }
-
 
 getText();
 
